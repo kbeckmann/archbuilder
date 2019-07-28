@@ -17,8 +17,11 @@ RUN yes | pacman -Syyu && \
         cower -d yay && \
         (cd yay && yes | makepkg -s) && \
         (cd yay && sudo pacman --noconfirm -U *.pkg.tar.xz) && \
+        yay --noconfirm -S asp \
         yay --noconfirm -R go \
     "
+
+USER docker
 
 # Ready to build and install aur packages on a clean machine
 CMD /bin/bash
