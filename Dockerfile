@@ -12,7 +12,7 @@ RUN yes | pacman -Syyu && \
         tar xf yay-bin.tar.gz && \
         (cd yay-bin && yes | makepkg -s --skippgpcheck) && \
         (cd yay-bin && sudo pacman --noconfirm -U *.pkg.tar.xz) && \
-        yay --noconfirm -S asp && \
+        yay --noconfirm -S asp \
     "
 
 USER docker
