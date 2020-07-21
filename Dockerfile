@@ -11,7 +11,7 @@ RUN yes | pacman -Syyu && \
         wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz && \
         tar xf yay-bin.tar.gz && \
         (cd yay-bin && yes | makepkg -s --skippgpcheck) && \
-        (cd yay-bin && sudo pacman --noconfirm -U *.pkg.tar.xz) && \
+        (cd yay-bin && sudo pacman --noconfirm -U *.pkg.tar*) && \
         yay --noconfirm -S asp \
     "
 
