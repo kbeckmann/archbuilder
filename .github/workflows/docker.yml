@@ -1,0 +1,24 @@
+name: Docker Push
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 0 * * *"
+
+
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to DockerHub Registry
+        run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build the tagged Docker image
+        run: docker build . --file Dockerfile -t docker.pkg.github.com/kbeckmann/archbuilder/archbuilder:latest
+      - name: Push the tagged Docker image
+        run: docker push docker.pkg.github.com/kbeckmann/archbuilder/archbuilder:latest
