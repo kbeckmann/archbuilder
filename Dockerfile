@@ -2,7 +2,8 @@ FROM archlinux/base
 
 WORKDIR /opt
 
-RUN yes | pacman -Syyu && \
+RUN echo 'Server = http://mirror.one.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist && \
+    yes | pacman -Syyu && \
     pacman --noconfirm -S base-devel wget sudo vi && \
     useradd -m docker && echo "docker:docker" | chpasswd && \
     chown docker:docker /opt && \
