@@ -2,10 +2,10 @@ FROM archlinux/archlinux
 
 WORKDIR /opt
 
-RUN echo 'Server = http://mirror.one.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist && \
-    yes | pacman -Syyu && \
-    pacman --noconfirm -S base-devel wget sudo vi && \
-    useradd -m docker && echo "docker:docker" | chpasswd && \
+RUN echo 'Server = http://mirror.one.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+RUN yes | pacman -Syyu
+RUN pacman --noconfirm -S base-devel wget sudo vi
+RUN useradd -m docker && echo "docker:docker" | chpasswd && \
     chown docker:docker /opt && \
     echo "docker ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     sudo -u docker bash -c "\
