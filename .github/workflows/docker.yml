@@ -19,6 +19,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the tagged Docker image
-        run: docker build . --no-cache --file Dockerfile -t docker.pkg.github.com/kbeckmann/archbuilder/archbuilder:latest
+        run: docker build . --no-cache --pull --file Dockerfile -t docker.pkg.github.com/kbeckmann/archbuilder/archbuilder:latest
       - name: Push the tagged Docker image
         run: docker push docker.pkg.github.com/kbeckmann/archbuilder/archbuilder:latest
